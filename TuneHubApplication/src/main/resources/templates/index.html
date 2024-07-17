@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+
+<title>Login</title>
+<style>
+
+body{
+	color: white;
+}
+/* Full-screen video background */
+
+
+.login-container {
+	justify-content:center;
+	align-items:center;
+	max-width: 500px;
+	width: 100%;
+	padding-top: 200px;
+}
+/* Remove underline from anchor tags */
+a {
+	text-decoration: none;
+	margin-left: 10px;
+}
+
+button {
+	width: 100px;
+}
+
+.card {
+	background-color: rgba(117, 190, 218, 0.6);
+	/* Transparent white background */
+	border-radius: 10px;
+}
+
+
+.bg-image {
+	/* The image used */
+	background-image: url('/images/ph3.jpg');
+	/* Full height */
+	height: 100%;
+	/* Full width */
+	width: 100%;
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: absolute;
+}
+</style>
+</head>
+<body>
+<div class="bg-image">
+</div>
+	
+
+
+	<div class="container login-container">
+		<div class="card">
+			<div class="card-body">
+				<h2 class="card-title text-center mb-4">Login</h2>
+				<form action="/login" method="post">
+					<div class="form-group mb-3">
+						<label for="email">Email Id:</label> <input type="email"
+							class="form-control" id="email" name="email"
+							placeholder="Enter email" pattern="^[a-zA-Z0-9]{3,30}@[a-zA-Z]{4,}\.[a-zA-Z]{3,}$"
+									title="Enter a valid email address" required>
+					</div>
+					<div class="form-group mb-3">
+						<label for="password">Password:</label> <input
+							type="password" class="form-control" id="password"
+							name="password" placeholder="Enter password" required>
+					</div>
+					<button type="submit" class="btn btn-primary btn-block">Login</button>
+					<a href="/map-register">create new account?</a>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap Bundle with Popper -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+</body>
+</html>
