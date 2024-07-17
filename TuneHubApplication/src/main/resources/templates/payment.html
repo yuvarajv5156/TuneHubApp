@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Payment</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+ <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #000;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 80%;
+        margin-top: 20%;
+      }
+
+      .offer-section,
+      .premium-features,
+      .comparison-table-container {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .offer-section {
+        text-align: center;
+        justify-content: center;
+        display: block;
+        position: relative;
+        background: linear-gradient(90deg, #600362, #571c97, #060a62);
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 150px;
+      }
+
+      .button-container {
+        margin: 20px 0;
+      }
+
+      .premium-button {
+        background-color: #fff;
+        color: #000;
+        border: none;
+        padding: 10px 20px;
+        margin: 0 10px;
+        border-radius: 50px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .premium-button:hover {
+        background-color: #e0e0e0;
+      }
+
+      a {
+        color: #fff;
+        text-decoration: underline;
+      }
+
+      .premium-features {
+        text-align: center;
+        padding: 20px;
+        background-color: #111;
+        border-radius: 10px;
+      }
+
+      .premium-features h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .premium-features ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: inline-block; /* Make the ul element inline-block */
+        text-align: left; /* Align text to the left within the ul */
+      }
+
+      .premium-features li {
+        margin-bottom: 10px;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+      }
+
+      .checkmark {
+        color: #1db954;
+        font-size: 20px;
+        margin-right: 10px;
+      }
+
+      .comparison-table-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 0 auto; /* Center the container horizontally */
+      }
+
+      .comparison-table {
+        width: 50%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+        padding: 15px;
+        text-align: center;
+        border-left: none; /* Remove left border */
+        border-right: none; /* Remove right border */
+      }
+
+      .comparison-table th {
+        background-color: #000;
+        font-weight: bold;
+      }
+
+      .comparison-table thead th {
+        border-bottom: 2px solid #444;
+      }
+
+      .comparison-table tbody tr {
+        border-bottom: 1px solid #444;
+      }
+
+      .comparison-table tbody tr:last-child {
+        border-bottom: none; /* Remove border from the last row */
+      }
+
+      .comparison-table tbody tr:nth-child(odd) {
+        background-color: #111;
+      }
+
+      .comparison-table tbody tr:nth-child(even) {
+        background-color: #1a1a1a;
+      }
+
+      .checkmark {
+        color: #1db954;
+        font-size: 20px;
+      }
+
+      .premium-icon {
+        width: 20px;
+        vertical-align: middle;
+        margin-right: 5px;
+      }
+      
+    </style>
+</head>
+<body>
+<div class="container">
+      <div class="offer-section">
+        <h1 style="color: #000;">You don't have a premium membership.!!!</h1>
+        <p>Listen without limits. Try 2 months of Premium for ₹119.</p>
+        <p>Only ₹119/month after. Cancel anytime.</p>
+        <form id="payment-form" class="button-container">
+	        <button type="submit" class="buy-button premium-button" >Get Premium</button>
+	    </form>
+        <p>
+          ₹119 for 2 months, then ₹119 per month after. Offer only available if
+          you haven't tried Premium before. <a href="#">Terms apply.</a>
+        </p>
+      </div>
+
+      <div class="premium-features">
+        <h1>All Premium plans include</h1>
+        <ul class="list">
+          <li><span class="checkmark">✔</span> Ad-free music listening</li>
+          <li><span class="checkmark">✔</span> Download to listen offline</li>
+          <li><span class="checkmark">✔</span> Play songs</li>
+          <li><span class="checkmark">✔</span> High quality audio</li>
+          <li>
+            <span class="checkmark">✔</span> Listen with friends in real time
+          </li>
+          <li><span class="checkmark">✔</span> Organize listening queue</li>
+        </ul>
+      </div>
+
+      <div class="comparison-table-container">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>What you'll get</th>
+              <th>TuneHub Free plan</th>
+              <th>Premium</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ad-free music listening</td>
+              <td>—</td>
+              <td><span class="checkmark">✔</span></td>
+            </tr>
+            <tr>
+              <td>Download songs</td>
+              <td>—</td>
+              <td><span class="checkmark">✔</span></td>
+            </tr>
+            <tr>
+              <td>Play songs in any order</td>
+              <td>—</td>
+              <td><span class="checkmark">✔</span></td>
+            </tr>
+            <tr>
+              <td>High quality audio</td>
+              <td>—</td>
+              <td><span class="checkmark">✔</span></td>
+            </tr>
+            <tr>
+              <td>Listen with friends in real time</td>
+              <td>—</td>
+              <td><span class="checkmark">✔</span></td>
+            </tr>
+            <tr>
+              <td>Organize listening queue</td>
+              <td>—</td>
+              <td><span class="checkmark">✔</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+<script>
+    $(document).ready(function() {
+        $(".buy-button").click(function(e) {
+            e.preventDefault();
+            createOrder();
+        });
+    });
+
+    function createOrder() {
+        $.post("/createOrder")
+        .done(function(order) {
+            order = JSON.parse(order);
+            var options = {
+                "key": "rzp_test_IrCWakyaG99yGA",
+                "amount": order.amount_due.toString(),
+                "currency": "INR",
+                "name": "Tune Hub",
+                "description": "Test Transaction",
+                "order_id": order.id,
+                "handler": function(response) {
+                    verifyPayment(response.razorpay_order_id, response.razorpay_payment_id, response.razorpay_signature);
+                },
+                "prefill": {
+                    "name": "Your Name",
+                    "email": "test@example.com",
+                    "contact": "9999999999"
+                },
+                "notes": {
+                    "address": "Your Address"
+                },
+                "theme": {
+                    "color": "#F37254"
+                }
+            };
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+        })
+        .fail(function(error) {
+            console.error("Error:", error);
+        });
+    }
+
+    function verifyPayment(orderId, paymentId, signature) {
+        $.post("/verify", {
+            orderId: orderId,
+            paymentId: paymentId,
+            signature: signature
+        })
+        .done(function(isValid) {
+            if (isValid) {
+                alert("Payment successful");
+                window.location.href = 'payment-success';
+            } else {
+                alert("Payment failed");
+                window.location.href = 'payment-failure';
+            }
+        })
+        .fail(function(error) {
+            console.error("Error:", error);
+        });
+    }
+</script>
+</body>
+</html>

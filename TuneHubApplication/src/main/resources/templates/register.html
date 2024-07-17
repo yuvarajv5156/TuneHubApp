@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+
+<title>Registration</title>
+<style>
+body{
+	color: white;
+
+}
+
+.registration-container {
+	max-width: 500px;
+	margin: auto;
+	padding-top: 50px;
+}
+
+.card {
+	background-color: rgba(117, 190, 218, 0.4);
+	/* Transparent white background */
+	border-radius: 10px;
+}
+
+/* Dark scrollbar */
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+
+.bg-image {
+	/* The image used */
+	background-image: url('/images/ph1.jpg');
+	/* Full height */
+	height: 100%;
+	/* Full width */
+	width: 100%;
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: absolute;
+}
+</style>
+</head>
+<body>
+	<div class="bg-image">
+		<div class="container registration-container">
+			<h2 class="mb-4 text-center" style="color: white">Create an Account</h2>
+			<div class="card">
+
+				<div class="card-body p-4">
+					<form action="/register" method="post">
+						<div class="mb-3 row">
+							<label for="username" class="col-sm-4 col-form-label">User
+								Name</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="username"
+									name="username" placeholder="Enter your name" required
+									pattern="[A-Za-z\s]{2,20}"
+									title="Name must contain only letters">
+							</div>
+						</div>
+
+						<div class="mb-3 row">
+							<label for="email" class="col-sm-4 col-form-label">Email</label>
+							<div class="col-sm-8">
+								<input type="email" class="form-control" id="email" name="email"
+									placeholder="Enter email" required
+									pattern="^[a-zA-Z0-9]{3,30}@[a-zA-Z]{4,}\.[a-zA-Z]{3,}$"
+									title="Enter a valid email address">
+							</div>
+						</div>
+
+						<div class="mb-3 row">
+							<label for="password" class="col-sm-4 col-form-label">Password</label>
+							<div class="col-sm-8">
+								<input type="password" class="form-control" id="password"
+									name="password" placeholder="Enter password" required>
+							</div>
+						</div>
+
+						<div class="mb-3 row">
+							<label class="col-sm-4 col-form-label">Gender</label>
+							<div class="col-sm-8">
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" id="male"
+										name="gender" value="male" required> <label
+										class="form-check-label" for="male">Male</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" id="female"
+										name="gender" value="female"> <label
+										class="form-check-label" for="female">Female</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" id="others"
+										name="gender" value="others"> <label
+										class="form-check-label" for="others">Others</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="mb-3 row">
+							<label class="col-sm-4 col-form-label">Role</label>
+							<div class="col-sm-8">
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" id="admin"
+										name="role" value="admin" required> <label
+										class="form-check-label" for="admin">Admin</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" id="customer"
+										name="role" value="customer"> <label
+										class="form-check-label" for="customer">Customer</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="mb-3 row">
+							<label for="address" class="col-sm-4 col-form-label">Address</label>
+							<div class="col-sm-8">
+								<textarea class="form-control" id="address" name="address"
+									rows="3" placeholder="Enter address" required minlength="5"
+									maxlength="50"></textarea>
+							</div>
+						</div>
+
+						<div class="text-center">
+							<button type="submit" class="btn btn-primary " style="width: 200px">Register</button>
+							<a href="/map-login" class="btn btn-danger" style="width: 200px">Cancel</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap Bundle with Popper -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+</body>
+</html>

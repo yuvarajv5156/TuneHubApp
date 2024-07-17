@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add Songs</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+	integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+	integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+	crossorigin="anonymous"></script>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding-top: 60px; /* Adjust for fixed navbar */
+}
+
+/* Navbar Styles */
+.navbar {
+	margin-bottom: 20px;
+	background-color: #232227 !important;
+	position: fixed; /* Add this line */
+	width: 100%; /* Add this line */
+	top: 0; /* Add this line */
+	z-index: 1000; /* Add this line */
+}
+
+.navbar-brand {
+	font-weight: bold;
+}
+
+.nav-link {
+	color: #fff !important;
+}
+
+.nav-link:hover {
+	color: #007bffa3 !important;
+}
+
+.navbar .btn-info {
+	background-color: #1f2123;
+	border: none;
+	cursor: pointer;
+}
+
+.navbar .btn-info:hover {
+	background-color: #138496;
+}
+
+/* Form Container Styles */
+.form-container {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+	border: 1px solid #ccc; /* Add this line for the border */
+	border-radius: 5px; /* Optional: add rounded corners */
+}
+
+.username-svg {
+	display: flex;
+	align-items: center;
+}
+
+.username-svg svg {
+	margin-right: 5px; /* Adjust spacing as needed */
+	filter: invert(1); /* Invert colors */
+}
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">TuneHub</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav mr-2">
+				<li class="nav-item active"><a class="nav-link home-link"
+					href="/map-adminhome">Home</a></li>
+			</ul>
+			<ul class="navbar-nav mr-2">
+				<li class="nav-item active"><a class="nav-link home-link"
+					href="/map-addsongs">Add Song</a></li>
+			</ul>
+			<ul class="navbar-nav mr-2">
+				<li class="nav-item active"><a class="nav-link home-link"
+					href="/adminsongs">View Songs</a></li>
+			</ul>
+			<ul class="navbar-nav mr-2">
+				<li class="nav-item active"><a class="nav-link home-link"
+					href="/createplaylist">Create Playlist</a></li>
+			</ul>
+			<ul class="navbar-nav mr-2">
+				<li class="nav-item active"><a class="nav-link home-link"
+					href="/adminplaylist">View Playlist</a></li>
+			</ul>
+			<ul class="navbar-nav ml-auto" th:each="u : ${userName}">
+				<li class="nav-item active username-svg"><svg
+						xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
+						height="24" color="#000000" fill="none">
+                        <circle cx="12" cy="12" r="10"
+							stroke="currentColor" stroke-width="1.5"></circle>
+                        <path
+							d="M7.5 17C9.8317 14.5578 14.1432 14.4428 16.5 17M14.4951 9.5C14.4951 10.8807 13.3742 12 11.9915 12C10.6089 12 9.48797 10.8807 9.48797 9.5C9.48797 8.11929 10.6089 7 11.9915 7C13.3742 7 14.4951 8.11929 14.4951 9.5Z"
+							stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                    </svg> <span th:text="${u.username}" style="color: white;"></span>
+				</li>
+			</ul>
+			<ul class="navbar-nav ml-3">
+				<li class="nav-item">
+					<form th:action="@{/logout}" method="post" class="form-inline">
+						<button class="btn btn-info my-2 my-sm-0" type="submit">Logout</button>
+					</form>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container mt-5">
+		<div class="form-container">
+			<h2 class="text-center mb-4">Add New Song</h2>
+			<form action="/addsongs" method="post">
+				<div class="form-group">
+					<label for="name">Song Name:</label> <input type="text"
+						class="form-control" id="name" name="name" required>
+				</div>
+				<div class="form-group">
+					<label for="artist">Song Artist:</label> <input type="text"
+						class="form-control" id="artist" name="artist" required>
+				</div>
+				<div class="form-group">
+					<label for="genre">Song Genre:</label> <input type="text"
+						class="form-control" id="genre" name="genre" required>
+				</div>
+				<div class="form-group">
+					<label for="link">Song Link:</label> <input type="url"
+						class="form-control" id="link" name="link" required>
+				</div>
+				<button type="submit" class="btn btn-dark btn-block">Add
+					Song</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
